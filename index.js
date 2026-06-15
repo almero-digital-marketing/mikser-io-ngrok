@@ -30,13 +30,13 @@ export function ngrok(options = {}) {
             const logger = useLogger()
 
             if (!runtime.options.server) {
-                logger.debug('ngrok: --server not active, skipping tunnel')
+                logger.debug('Ngrok: --server not active, skipping tunnel')
                 return
             }
 
             const authtoken = options.authtoken ?? process.env.NGROK_AUTHTOKEN
             if (!authtoken) {
-                logger.info('ngrok: NGROK_AUTHTOKEN not set, running on localhost only')
+                logger.info('Ngrok: NGROK_AUTHTOKEN not set, running on localhost only')
                 return
             }
 
@@ -61,13 +61,13 @@ export function ngrok(options = {}) {
             try {
                 listener = await ngrokSDK.forward(forwardConfig)
             } catch (err) {
-                logger.warn('ngrok tunnel failed: %s — running on localhost only', err.message)
+                logger.warn('Ngrok tunnel failed: %s — running on localhost only', err.message)
                 return
             }
 
             const url = listener.url()
             runtime.options.url = url
-            logger.info('ngrok tunnel: %s → localhost:%d', url, port)
+            logger.info('Ngrok tunnel: %s → localhost:%d', url, port)
 
             // Close the tunnel cleanly when the process is asked to
             // stop. Best-effort: ngrokSDK.disconnect/close may throw if
