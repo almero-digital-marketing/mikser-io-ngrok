@@ -1,0 +1,28 @@
+{
+  "name": "mikser-io-ngrok",
+  "version": "1.0.0",
+  "description": "ngrok tunnel plugin for mikser-io. Opens a tunnel to the local --server port when NGROK_AUTHTOKEN is configured and stamps the public URL on runtime.options.url so downstream plugins (mount logs, MCP preview URLs, webhook receivers, email tracking links, share URLs) become externally reachable without further wiring.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "commit": "node ../commit.mjs --only mikser-io-ngrok",
+    "publish:workspace": "node ../publish.mjs --only mikser-io-ngrok",
+    "update": "node ../update.mjs --only mikser-io-ngrok"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/almero-digital-marketing/mikser-io-ngrok.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/almero-digital-marketing/mikser-io-ngrok/issues"
+  },
+  "homepage": "https://github.com/almero-digital-marketing/mikser-io-ngrok#readme",
+  "peerDependencies": {
+    "mikser-io": "^9.0.0"
+  },
+  "dependencies": {
+    "@ngrok/ngrok": "^1.4.1"
+  }
+}
