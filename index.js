@@ -79,5 +79,8 @@ export function ngrok(options = {}) {
                 })
             }
         })
+        // Names this package to the runtime's loaded-plugin record, so
+        // ping reports it as running rather than as undetectable.
+        return { module: import.meta.url }
     }
 }
