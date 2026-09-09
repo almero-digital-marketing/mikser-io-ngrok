@@ -40,9 +40,15 @@ export function ngrok(options = {}) {
                 return
             }
 
-            const port = typeof runtime.options.server === 'number'
-                ? runtime.options.server
-                : 3001
+            // The engine's resolved port, not the requested one.
+            //
+            // This used to read `options.server` and fall back to 3001 when it
+            // was not a number, which was right only while a bare `--server`
+            // meant 3001. It now means "a free port", so that fallback would
+            // tunnel to a port nothing is listening on. `options.port` is the
+            // engine's own answer, settled during `initialized` — before this
+            // hook — and always a number by the time anyone can ask.
+            const port = runtime.options.port
 
             // Build the forward config from supported options. Anything
             // unrecognised passes through to @ngrok/ngrok so consumers
